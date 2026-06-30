@@ -1,93 +1,55 @@
 import java.util.Scanner;
 
-// Classe principal do programa
+// Classe principal
 public class Main {
 
-    // Método principal
     public static void main(String[] args) {
 
-        // Scanner é utilizado para ler o que o usuário digita
+        // Scanner utilizado para ler os dados do usuário
         Scanner scanner = new Scanner(System.in);
 
-        // -----------------------------
-        // Entrada dos números
-        // -----------------------------
+        // Cria um objeto da classe Calculadora
+        Calculadora calculadora = new Calculadora();
 
-        System.out.println("===== CALCULADORA =====");
-        System.out.println();
+        System.out.println("==================================");
+        System.out.println("      CALCULADORA JAVA");
+        System.out.println("==================================");
 
-        System.out.println("Digite os números separados por vírgula:");
-        System.out.println("Exemplo: 10,20,30");
+        // Solicita os números
+        System.out.println("\nDigite os números separados por vírgula:");
 
-        // Lê toda a linha digitada
         String entrada = scanner.nextLine();
 
-        // Divide a String utilizando a vírgula
-        String[] numerosTexto = entrada.split(",");
+        // Divide a String usando a vírgula
+        String[] numeros = entrada.split(",");
 
-        // -----------------------------
-        // Escolha da operação
-        // -----------------------------
-
-        System.out.println();
-        System.out.println("Escolha a operação:");
+        // Menu
+        System.out.println("\nEscolha a operação:");
 
         System.out.println("1 - Soma");
         System.out.println("2 - Subtração");
 
+        System.out.print("Opção: ");
+
         int opcao = scanner.nextInt();
 
-        // Variável que guardará o resultado
-        int resultado = 0;
+        System.out.println();
 
-        // -----------------------------
-        // Soma
-        // -----------------------------
+        // Verifica a operação escolhida
+        switch (opcao) {
 
-        if(opcao == 1){
+            case 1:
+                System.out.println("Resultado da soma: "
+                        + calculadora.somar(numeros));
+                break;
 
-            // Percorre todos os números digitados
-            for(int i = 0; i < numerosTexto.length; i++){
+            case 2:
+                System.out.println("Resultado da subtração: "
+                        + calculadora.subtrair(numeros));
+                break;
 
-                // Converte String para inteiro
-                int numero = Integer.parseInt(numerosTexto[i]);
-
-                // Soma
-                resultado += numero;
-
-            }
-
-            System.out.println();
-            System.out.println("Resultado da soma = " + resultado);
-
-        }
-
-        // -----------------------------
-        // Subtração
-        // -----------------------------
-
-        else if(opcao == 2){
-
-            // O primeiro número será o valor inicial
-            resultado = Integer.parseInt(numerosTexto[0]);
-
-            // Começa do segundo número
-            for(int i = 1; i < numerosTexto.length; i++){
-
-                int numero = Integer.parseInt(numerosTexto[i]);
-
-                resultado -= numero;
-
-            }
-
-            System.out.println();
-            System.out.println("Resultado da subtração = " + resultado);
-
-        }
-
-        else{
-
-            System.out.println("Operação inválida.");
+            default:
+                System.out.println("Opção inválida.");
 
         }
 
